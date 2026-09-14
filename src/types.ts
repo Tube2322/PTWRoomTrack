@@ -45,3 +45,12 @@ export interface AlertItem {
   level: 'info' | 'warning' | 'critical';
   time: string;
 }
+
+export interface AppUser {
+  id: string;
+  name: string;
+  role: Role;
+  floor: Floor | 'all';
+  active: boolean;
+  lastLogin: string;
+}

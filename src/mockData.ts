@@ -1,4 +1,4 @@
-import type { AlertItem, Floor, RepairTicket, Room, RoomStatus } from './types';
+import type { AlertItem, AppUser, Floor, RepairTicket, Role, Room, RoomStatus } from './types';
 
 const FLOORS: Floor[] = [6, 7, 8];
 
@@ -68,6 +68,28 @@ export const alerts: AlertItem[] = [
     time: '10:32',
   },
   { id: 'a3', message: 'ห้อง 805 รอซ่อม', level: 'critical', time: '09:40' },
+];
+
+export const roleLabel: Record<Role, string> = {
+  nurse: 'พยาบาล',
+  housekeeper: 'แม่บ้าน',
+  opd: 'ทีม OPD',
+  maintenance: 'งานซ่อมบำรุง',
+  admin: 'แอดมินหลัก',
+  executive: 'ผู้บริหาร',
+};
+
+export const users: AppUser[] = [
+  { id: 'u1', name: 'สมศรี ใจดี', role: 'nurse', floor: 6, active: true, lastLogin: '10:12 วันนี้' },
+  { id: 'u2', name: 'มานะ พากเพียร', role: 'nurse', floor: 7, active: true, lastLogin: '09:48 วันนี้' },
+  { id: 'u3', name: 'สายฝน คงทน', role: 'nurse', floor: 8, active: false, lastLogin: '2 วันก่อน' },
+  { id: 'u4', name: 'แม่บ้าน A', role: 'housekeeper', floor: 6, active: true, lastLogin: '10:17 วันนี้' },
+  { id: 'u5', name: 'แม่บ้าน B', role: 'housekeeper', floor: 7, active: true, lastLogin: '10:05 วันนี้' },
+  { id: 'u6', name: 'แม่บ้าน C', role: 'housekeeper', floor: 8, active: true, lastLogin: '09:50 วันนี้' },
+  { id: 'u7', name: 'ทีม OPD 1', role: 'opd', floor: 'all', active: true, lastLogin: '08:30 วันนี้' },
+  { id: 'u8', name: 'ช่างสมชาย', role: 'maintenance', floor: 'all', active: true, lastLogin: '08:55 วันนี้' },
+  { id: 'u9', name: 'ผู้อำนวยการโรงพยาบาล', role: 'executive', floor: 'all', active: true, lastLogin: 'เมื่อวาน' },
+  { id: 'u10', name: 'แอดมิน ธีปกร', role: 'admin', floor: 'all', active: true, lastLogin: 'ออนไลน์' },
 ];
 
 export const statusLabel: Record<RoomStatus, string> = {
