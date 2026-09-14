@@ -20,11 +20,11 @@ export default function OpdDashboard() {
     <div className="space-y-6">
       <div>
         <h2 className="text-lg font-semibold text-gray-900">แดชบอร์ดทีม OPD</h2>
-        <p className="text-sm text-gray-500">รับงานเฉพาะชั้นที่ได้รับมอบหมาย (รอทำ &gt; 3 ห้อง)</p>
+        <p className="text-sm text-gray-400">รับงานเฉพาะชั้นที่ได้รับมอบหมาย (รอทำ &gt; 3 ห้อง)</p>
       </div>
 
       {assignedFloors.length === 0 && (
-        <p className="rounded-md border border-gray-200 bg-white p-4 text-sm text-gray-500">
+        <p className="rounded-2xl border border-gray-100 bg-white p-4 text-sm text-gray-400">
           ยังไม่มีชั้นที่ต้องการความช่วยเหลือ
         </p>
       )}

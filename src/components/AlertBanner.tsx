@@ -13,7 +13,7 @@ export default function AlertBanner({ items }: { items: AlertItem[] }) {
       {items.map((a) => (
         <div
           key={a.id}
-          className={`flex items-center justify-between rounded-md border px-3 py-2 text-sm ${levelStyle[a.level]}`}
+          className={`flex items-center justify-between rounded-xl border px-4 py-2.5 text-sm ${levelStyle[a.level]}`}
         >
           <span>{a.message}</span>
           <span className="text-xs opacity-70">{a.time}</span>

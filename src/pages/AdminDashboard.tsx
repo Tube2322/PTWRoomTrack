@@ -39,16 +39,16 @@ export default function AdminDashboard() {
     <div className="space-y-6">
       <div>
         <h2 className="text-lg font-semibold text-gray-900">แดชบอร์ดแอดมินหลัก</h2>
-        <p className="text-sm text-gray-500">ภาพรวมทั้ง 90 ห้อง / จัดการผู้ใช้งานและข้อมูลห้อง</p>
+        <p className="text-sm text-gray-400">ภาพรวมทั้ง 90 ห้อง / จัดการผู้ใช้งานและข้อมูลห้อง</p>
       </div>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         {(Object.keys(counts) as RoomStatus[])
           .filter((s) => s !== 'other')
           .map((s) => (
-            <div key={s} className="rounded-lg border border-gray-200 bg-white p-3">
+            <div key={s} className="rounded-2xl border border-gray-100 bg-white p-4">
               <p className="text-2xl font-bold text-gray-900">{counts[s]}</p>
-              <p className="text-xs text-gray-500">{statusLabel[s]}</p>
+              <p className="text-xs text-gray-400">{statusLabel[s]}</p>
             </div>
           ))}
       </div>
@@ -59,7 +59,7 @@ export default function AdminDashboard() {
         <select
           value={floor}
           onChange={(e) => setFloor(e.target.value === 'all' ? 'all' : (Number(e.target.value) as Floor))}
-          className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+          className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-600"
         >
           {FLOORS.map((f) => (
             <option key={f} value={f}>
@@ -70,7 +70,7 @@ export default function AdminDashboard() {
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value as RoomStatus | 'all')}
-          className="rounded-md border border-gray-300 px-2 py-1 text-sm"
+          className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-600"
         >
           {STATUSES.map((s) => (
             <option key={s} value={s}>
@@ -79,13 +79,13 @@ export default function AdminDashboard() {
           ))}
         </select>
         <div className="ml-auto flex gap-2">
-          <button className="rounded-md border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50">
+          <button className="rounded-full border border-gray-200 px-3.5 py-1.5 text-xs font-medium text-gray-600 transition hover:border-emerald-300 hover:text-emerald-700">
             จัดการผู้ใช้งาน
           </button>
-          <button className="rounded-md border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50">
+          <button className="rounded-full border border-gray-200 px-3.5 py-1.5 text-xs font-medium text-gray-600 transition hover:border-emerald-300 hover:text-emerald-700">
             ส่งออกรายงาน
           </button>
-          <button className="rounded-md border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50">
+          <button className="rounded-full border border-gray-200 px-3.5 py-1.5 text-xs font-medium text-gray-600 transition hover:border-emerald-300 hover:text-emerald-700">
             Audit Log
           </button>
         </div>
