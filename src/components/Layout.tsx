@@ -1,15 +1,15 @@
 import { NavLink, Outlet } from 'react-router-dom';
 
 const NAV_ITEMS = [
+  { to: '/admin', label: 'ศูนย์ควบคุม' },
   { to: '/nurse', label: 'พยาบาล' },
   { to: '/housekeeper', label: 'แม่บ้าน' },
   { to: '/opd', label: 'ทีม OPD' },
   { to: '/maintenance', label: 'งานซ่อมบำรุง' },
-  { to: '/admin', label: 'แอดมินหลัก' },
   { to: '/executive', label: 'ผู้บริหาร' },
 ];
 
-export default function Layout() {
+export default function CenterLayout() {
   return (
     <div className="min-h-screen bg-white">
       <header className="sticky top-0 z-10 border-b border-emerald-100 bg-white/90 backdrop-blur">

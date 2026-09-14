@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { alerts, rooms, statusLabel } from '../mockData';
 import type { Floor, RoomStatus } from '../types';
 import RoomGrid from '../components/RoomGrid';
@@ -12,6 +13,14 @@ const STATUSES: (RoomStatus | 'all')[] = [
   'occupied',
   'ready',
   'repair',
+];
+
+const ROLE_VIEWS = [
+  { to: '/nurse', label: 'พยาบาล', desc: 'แจ้งทำความสะอาด / แจ้งซ่อม' },
+  { to: '/housekeeper', label: 'แม่บ้าน', desc: 'รับงาน / Routine Cleaning' },
+  { to: '/opd', label: 'ทีม OPD', desc: 'งานช่วยเหลือเฉพาะชั้น' },
+  { to: '/maintenance', label: 'งานซ่อมบำรุง', desc: 'รับงานซ่อม / ปิดงาน' },
+  { to: '/executive', label: 'ผู้บริหาร', desc: 'ภาพรวม KPI Read-only' },
 ];
 
 export default function AdminDashboard() {
@@ -38,9 +47,25 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-lg font-semibold text-gray-900">แดชบอร์ดแอดมินหลัก</h2>
+        <h2 className="text-lg font-semibold text-gray-900">ศูนย์ควบคุม แอดมินหลัก</h2>
         <p className="text-sm text-gray-400">ภาพรวมทั้ง 90 ห้อง / จัดการผู้ใช้งานและข้อมูลห้อง</p>
       </div>
+
+      <section>
+        <h3 className="mb-2 text-sm font-semibold text-gray-500">สลับไปดูมุมมองบทบาทอื่น</h3>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          {ROLE_VIEWS.map((r) => (
+            <Link
+              key={r.to}
+              to={r.to}
+              className="rounded-2xl border border-gray-100 bg-white p-3.5 transition hover:border-emerald-300 hover:shadow-md"
+            >
+              <p className="text-sm font-semibold text-gray-900">{r.label}</p>
+              <p className="mt-0.5 text-xs text-gray-400">{r.desc}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         {(Object.keys(counts) as RoomStatus[])
