@@ -19,8 +19,8 @@ export default function MaintenanceDashboard() {
         <p className="text-sm text-gray-400">รายการแจ้งซ่อมทั้งหมด</p>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white">
-        <table className="min-w-full divide-y divide-gray-100 text-sm">
+      <div className="overflow-x-auto rounded-2xl border border-gray-100 bg-white">
+        <table className="min-w-[640px] w-full divide-y divide-gray-100 text-sm">
           <thead className="bg-gray-50/60 text-left text-xs font-medium text-gray-400">
             <tr>
               <th className="px-4 py-2.5">ห้อง</th>

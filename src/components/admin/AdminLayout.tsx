@@ -1,11 +1,14 @@
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { alerts } from '../../mockData';
 import {
   BedIcon,
   BellIcon,
   ChartIcon,
+  CloseIcon,
   HomeIcon,
   LogoutIcon,
+  MenuIcon,
   SettingsIcon,
   UsersIcon,
 } from './ui/icons';
@@ -27,25 +30,51 @@ const ROLE_VIEWS = [
 ];
 
 const navItemClass = ({ isActive }: { isActive: boolean }) =>
-  `flex shrink-0 items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-sm font-medium transition ${
+  `flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-sm font-medium transition ${
     isActive ? 'bg-emerald-500 text-white' : 'text-slate-300 hover:bg-white/5 hover:text-white'
   }`;
 
 export default function AdminLayout() {
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
   return (
     <div className="min-h-screen bg-gray-50 md:flex">
-      <aside className="bg-[#0b1324] text-slate-300 md:sticky md:top-0 md:flex md:h-screen md:w-64 md:shrink-0 md:flex-col">
-        <div className="flex items-center gap-3 px-5 py-5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500 text-base font-bold text-white">
-            P
-          </span>
-          <div>
-            <h1 className="text-sm font-semibold text-white">PTW Room Ready</h1>
-            <p className="text-xs text-slate-400">ศูนย์ควบคุมแอดมิน</p>
+      {open && (
+        <div
+          className="fixed inset-0 z-30 bg-gray-900/40 backdrop-blur-sm md:hidden"
+          onClick={() => setOpen(false)}
+        />
+      )}
+
+      <aside
+        className={`fixed inset-y-0 left-0 z-40 flex w-72 max-w-[85vw] -translate-x-full flex-col bg-[#0b1324] text-slate-300 transition-transform duration-200 md:sticky md:top-0 md:h-screen md:w-64 md:shrink-0 md:translate-x-0 ${
+          open ? 'translate-x-0' : ''
+        }`}
+      >
+        <div className="flex items-center justify-between gap-3 px-5 py-5">
+          <div className="flex items-center gap-3">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-500 text-base font-bold text-white">
+              P
+            </span>
+            <div>
+              <h1 className="text-sm font-semibold text-white">PTW Room Ready</h1>
+              <p className="text-xs text-slate-400">ศูนย์ควบคุมแอดมิน</p>
+            </div>
           </div>
+          <button
+            onClick={() => setOpen(false)}
+            className="rounded-lg p-1 text-slate-400 hover:bg-white/5 hover:text-white md:hidden"
+          >
+            <CloseIcon className="h-5 w-5" />
+          </button>
         </div>
 
-        <nav className="flex gap-1 overflow-x-auto px-3 pb-3 md:flex-col md:overflow-visible md:pb-0">
+        <nav className="flex flex-col gap-1 overflow-y-auto px-3 pb-3">
           {MAIN_NAV.map(({ to, label, end, Icon }) => (
             <NavLink key={to} to={to} end={end} className={navItemClass}>
               <Icon className="h-5 w-5 shrink-0" />
@@ -54,7 +83,7 @@ export default function AdminLayout() {
           ))}
         </nav>
 
-        <div className="hidden px-5 py-4 md:block">
+        <div className="px-5 py-4">
           <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
             สลับมุมมองบทบาท
           </p>
@@ -71,12 +100,12 @@ export default function AdminLayout() {
           </div>
         </div>
 
-        <div className="hidden md:mt-auto md:block md:border-t md:border-white/10 md:px-3 md:py-3">
+        <div className="mt-auto border-t border-white/10 px-3 py-3">
           <Link
             to="/admin/profile"
             className="flex items-center gap-2.5 rounded-xl px-2 py-2 transition hover:bg-white/5"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">
               ธ
             </span>
             <div className="min-w-0">
@@ -95,8 +124,15 @@ export default function AdminLayout() {
       </aside>
 
       <div className="min-w-0 flex-1">
-        <header className="sticky top-0 z-10 flex items-center gap-4 border-b border-gray-100 bg-white/90 px-6 py-3.5 backdrop-blur">
-          <div className="relative w-full max-w-md">
+        <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-gray-100 bg-white/90 px-4 py-3.5 backdrop-blur sm:gap-4 sm:px-6">
+          <button
+            onClick={() => setOpen(true)}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-gray-500 hover:bg-gray-50 md:hidden"
+          >
+            <MenuIcon className="h-5 w-5" />
+          </button>
+
+          <div className="relative w-full min-w-0 max-w-[160px] sm:max-w-md">
             <svg
               className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-300"
               fill="none"
@@ -111,15 +147,15 @@ export default function AdminLayout() {
               className="w-full rounded-full border border-gray-200 bg-gray-50 py-2 pl-9 pr-3 text-sm text-gray-600 outline-none transition placeholder:text-gray-300 focus:border-emerald-300 focus:bg-white focus:ring-2 focus:ring-emerald-100"
             />
           </div>
-          <div className="ml-auto flex items-center gap-3">
+          <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
             <button className="relative flex h-9 w-9 items-center justify-center rounded-full text-gray-400 transition hover:bg-gray-50 hover:text-emerald-600">
               <BellIcon className="h-5 w-5" />
               {alerts.length > 0 && (
                 <span className="absolute right-1.5 top-1.5 flex h-2 w-2 rounded-full bg-red-500" />
               )}
             </button>
-            <Link to="/admin/profile" className="flex items-center gap-2 rounded-full py-1 pl-1 pr-2 transition hover:bg-gray-50">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">
+            <Link to="/admin/profile" className="flex items-center gap-2 rounded-full py-1 pl-1 pr-1 transition hover:bg-gray-50 sm:pr-2">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">
                 ธ
               </span>
               <span className="hidden text-left sm:block">
@@ -130,7 +166,7 @@ export default function AdminLayout() {
           </div>
         </header>
 
-        <main className="px-6 py-8">
+        <main className="px-4 py-6 sm:px-6 sm:py-8">
           <Outlet />
         </main>
       </div>

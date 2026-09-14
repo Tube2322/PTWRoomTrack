@@ -52,8 +52,8 @@ export default function Users() {
       {filtered.length === 0 ? (
         <EmptyState message="ไม่พบผู้ใช้งานที่ตรงกับเงื่อนไข" />
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white">
-          <table className="min-w-full divide-y divide-gray-100 text-sm">
+        <div className="overflow-x-auto rounded-2xl border border-gray-100 bg-white">
+          <table className="min-w-[720px] w-full divide-y divide-gray-100 text-sm">
             <thead className="bg-gray-50/60 text-left text-xs font-medium text-gray-400">
               <tr>
                 <th className="px-4 py-2.5">ชื่อ</th>
