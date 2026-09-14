@@ -31,7 +31,7 @@ const ROLE_VIEWS = [
 
 const navItemClass = ({ isActive }: { isActive: boolean }) =>
   `flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-sm font-medium transition ${
-    isActive ? 'bg-emerald-500 text-white' : 'text-slate-300 hover:bg-white/5 hover:text-white'
+    isActive ? 'bg-emerald-500 text-white' : 'text-stone-300 hover:bg-white/5 hover:text-white'
   }`;
 
 export default function AdminLayout() {
@@ -43,16 +43,16 @@ export default function AdminLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-gray-50 md:flex">
+    <div className="min-h-screen bg-stone-50 md:flex">
       {open && (
         <div
-          className="fixed inset-0 z-30 bg-gray-900/40 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-30 bg-stone-900/40 backdrop-blur-sm md:hidden"
           onClick={() => setOpen(false)}
         />
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex w-72 max-w-[85vw] -translate-x-full flex-col bg-[#0b1324] text-slate-300 transition-transform duration-200 md:sticky md:top-0 md:h-screen md:w-64 md:shrink-0 md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 flex w-72 max-w-[85vw] -translate-x-full flex-col bg-[#111210] text-stone-300 transition-transform duration-200 md:sticky md:top-0 md:h-screen md:w-64 md:shrink-0 md:translate-x-0 ${
           open ? 'translate-x-0' : ''
         }`}
       >
@@ -63,12 +63,12 @@ export default function AdminLayout() {
             </span>
             <div>
               <h1 className="text-sm font-semibold text-white">PTW Room Ready</h1>
-              <p className="text-xs text-slate-400">Center Hub</p>
+              <p className="text-xs text-stone-400">Center Hub</p>
             </div>
           </div>
           <button
             onClick={() => setOpen(false)}
-            className="rounded-lg p-1 text-slate-400 hover:bg-white/5 hover:text-white md:hidden"
+            className="rounded-lg p-1 text-stone-400 hover:bg-white/5 hover:text-white md:hidden"
           >
             <CloseIcon className="h-5 w-5" />
           </button>
@@ -84,7 +84,7 @@ export default function AdminLayout() {
         </nav>
 
         <div className="px-5 py-4">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
             สลับมุมมองบทบาท
           </p>
           <div className="flex flex-col gap-0.5">
@@ -92,7 +92,7 @@ export default function AdminLayout() {
               <Link
                 key={r.to}
                 to={r.to}
-                className="rounded-xl px-3 py-1.5 text-sm text-slate-400 transition hover:bg-white/5 hover:text-white"
+                className="rounded-xl px-3 py-1.5 text-sm text-stone-400 transition hover:bg-white/5 hover:text-white"
               >
                 {r.label}
               </Link>
@@ -110,12 +110,12 @@ export default function AdminLayout() {
             </span>
             <div className="min-w-0">
               <p className="truncate text-sm font-medium text-white">แอดมิน ธีปกร</p>
-              <p className="text-xs text-slate-400">แอดมินหลัก</p>
+              <p className="text-xs text-stone-400">แอดมินหลัก</p>
             </div>
           </Link>
           <Link
             to="/"
-            className="mt-1 flex items-center gap-2.5 rounded-xl px-3.5 py-2 text-sm font-medium text-slate-400 transition hover:bg-white/5 hover:text-white"
+            className="mt-1 flex items-center gap-2.5 rounded-xl px-3.5 py-2 text-sm font-medium text-stone-400 transition hover:bg-white/5 hover:text-white"
           >
             <LogoutIcon className="h-4 w-4" />
             ออกจากระบบ
@@ -124,17 +124,17 @@ export default function AdminLayout() {
       </aside>
 
       <div className="min-w-0 flex-1">
-        <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-gray-100 bg-white/90 px-4 py-3.5 backdrop-blur sm:gap-4 sm:px-6">
+        <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-stone-100 bg-white/90 px-4 py-3.5 backdrop-blur sm:gap-4 sm:px-6">
           <button
             onClick={() => setOpen(true)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-gray-500 hover:bg-gray-50 md:hidden"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-stone-500 hover:bg-stone-50 md:hidden"
           >
             <MenuIcon className="h-5 w-5" />
           </button>
 
           <div className="relative w-full min-w-0 max-w-[160px] sm:max-w-md">
             <svg
-              className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-300"
+              className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-300"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -144,23 +144,23 @@ export default function AdminLayout() {
             </svg>
             <input
               placeholder="ค้นหาห้อง, ผู้ใช้งาน..."
-              className="w-full rounded-full border border-gray-200 bg-gray-50 py-2 pl-9 pr-3 text-sm text-gray-600 outline-none transition placeholder:text-gray-300 focus:border-emerald-300 focus:bg-white focus:ring-2 focus:ring-emerald-100"
+              className="w-full rounded-full border border-stone-200 bg-stone-50 py-2 pl-9 pr-3 text-sm text-stone-600 outline-none transition placeholder:text-stone-300 focus:border-emerald-300 focus:bg-white focus:ring-2 focus:ring-emerald-100"
             />
           </div>
           <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
-            <button className="relative flex h-9 w-9 items-center justify-center rounded-full text-gray-400 transition hover:bg-gray-50 hover:text-emerald-600">
+            <button className="relative flex h-9 w-9 items-center justify-center rounded-full text-stone-400 transition hover:bg-stone-50 hover:text-emerald-600">
               <BellIcon className="h-5 w-5" />
               {alerts.length > 0 && (
                 <span className="absolute right-1.5 top-1.5 flex h-2 w-2 rounded-full bg-red-500" />
               )}
             </button>
-            <Link to="/admin/profile" className="flex items-center gap-2 rounded-full py-1 pl-1 pr-1 transition hover:bg-gray-50 sm:pr-2">
+            <Link to="/admin/profile" className="flex items-center gap-2 rounded-full py-1 pl-1 pr-1 transition hover:bg-stone-50 sm:pr-2">
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">
                 ธ
               </span>
               <span className="hidden text-left sm:block">
-                <span className="block text-sm font-medium text-gray-800">ธีปกร</span>
-                <span className="block text-xs text-gray-400">แอดมินหลัก</span>
+                <span className="block text-sm font-medium text-stone-800">ธีปกร</span>
+                <span className="block text-xs text-stone-400">แอดมินหลัก</span>
               </span>
             </Link>
           </div>

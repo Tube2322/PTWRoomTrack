@@ -36,8 +36,8 @@ export default function ExecutiveDashboard() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900">แดชบอร์ดผู้บริหาร</h2>
-          <p className="text-sm text-gray-400">ภาพรวม 90 ห้อง และ KPI</p>
+          <h2 className="text-lg font-semibold text-stone-900">แดชบอร์ดผู้บริหาร</h2>
+          <p className="text-sm text-stone-400">ภาพรวม 90 ห้อง และ KPI</p>
         </div>
         <span className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
           Read-only
@@ -46,9 +46,9 @@ export default function ExecutiveDashboard() {
 
       <div className="grid grid-cols-3 gap-3">
         {byFloor.map(({ floor, count, total }) => (
-          <div key={floor} className="rounded-2xl border border-gray-100 bg-white p-4">
-            <p className="text-sm font-semibold text-gray-900">ชั้น {floor}</p>
-            <p className="mt-1 text-xs text-gray-400">{total} ห้อง</p>
+          <div key={floor} className="rounded-2xl border border-stone-100 bg-white p-4">
+            <p className="text-sm font-semibold text-stone-900">ชั้น {floor}</p>
+            <p className="mt-1 text-xs text-stone-400">{total} ห้อง</p>
             <div className="mt-3 space-y-1 text-xs">
               <div className="flex justify-between text-emerald-700">
                 <span>พร้อมรับ</span>
@@ -75,13 +75,13 @@ export default function ExecutiveDashboard() {
         ))}
       </div>
 
-      <div className="rounded-2xl border border-gray-100 bg-white p-4">
-        <h3 className="text-sm font-semibold text-gray-900">KPI สรุป</h3>
+      <div className="rounded-2xl border border-stone-100 bg-white p-4">
+        <h3 className="text-sm font-semibold text-stone-900">KPI สรุป</h3>
         <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
           {KPI_LABELS.map((label) => (
             <div key={label} className="rounded-xl bg-emerald-50/50 p-3">
-              <p className="text-xl font-bold text-gray-900">—</p>
-              <p className="text-xs text-gray-400">{label}</p>
+              <p className="text-xl font-bold text-stone-900">—</p>
+              <p className="text-xs text-stone-400">{label}</p>
             </div>
           ))}
         </div>

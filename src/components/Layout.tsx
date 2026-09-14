@@ -19,8 +19,8 @@ export default function CenterLayout() {
               P
             </span>
             <div>
-              <h1 className="text-base font-semibold text-gray-900">PTW Room Ready</h1>
-              <p className="text-xs text-gray-400">สถานะห้องพักและงานทำความสะอาด Real-time</p>
+              <h1 className="text-base font-semibold text-stone-900">PTW Room Ready</h1>
+              <p className="text-xs text-stone-400">สถานะห้องพักและงานทำความสะอาด Real-time</p>
             </div>
           </div>
           <nav className="flex flex-wrap gap-1">
@@ -32,7 +32,7 @@ export default function CenterLayout() {
                   `rounded-full px-3.5 py-1.5 text-sm font-medium transition ${
                     isActive
                       ? 'bg-emerald-500 text-white'
-                      : 'text-gray-500 hover:bg-emerald-50 hover:text-emerald-700'
+                      : 'text-stone-500 hover:bg-emerald-50 hover:text-emerald-700'
                   }`
                 }
               >

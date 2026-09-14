@@ -10,13 +10,13 @@ export default function MinimalLayout() {
               P
             </span>
             <div>
-              <h1 className="text-base font-semibold text-gray-900">PTW Room Ready</h1>
-              <p className="text-xs text-gray-400">สถานะห้องพักและงานทำความสะอาด Real-time</p>
+              <h1 className="text-base font-semibold text-stone-900">PTW Room Ready</h1>
+              <p className="text-xs text-stone-400">สถานะห้องพักและงานทำความสะอาด Real-time</p>
             </div>
           </Link>
           <Link
             to="/admin"
-            className="flex shrink-0 items-center gap-1.5 rounded-full border border-gray-200 px-3.5 py-1.5 text-sm font-medium text-gray-500 transition hover:border-emerald-300 hover:text-emerald-700"
+            className="flex shrink-0 items-center gap-1.5 rounded-full border border-stone-200 px-3.5 py-1.5 text-sm font-medium text-stone-500 transition hover:border-emerald-300 hover:text-emerald-700"
           >
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />

@@ -11,7 +11,7 @@ export default function Pagination({ page, totalPages, onChange }: Props) {
       <button
         onClick={() => onChange(Math.max(1, page - 1))}
         disabled={page === 1}
-        className="rounded-full px-3 py-1.5 text-sm text-gray-500 transition hover:bg-emerald-50 hover:text-emerald-700 disabled:opacity-30 disabled:hover:bg-transparent"
+        className="rounded-full px-3 py-1.5 text-sm text-stone-500 transition hover:bg-emerald-50 hover:text-emerald-700 disabled:opacity-30 disabled:hover:bg-transparent"
       >
         ก่อนหน้า
       </button>
@@ -20,7 +20,7 @@ export default function Pagination({ page, totalPages, onChange }: Props) {
           key={p}
           onClick={() => onChange(p)}
           className={`h-8 w-8 rounded-full text-sm font-medium transition ${
-            p === page ? 'bg-emerald-500 text-white' : 'text-gray-500 hover:bg-emerald-50 hover:text-emerald-700'
+            p === page ? 'bg-emerald-500 text-white' : 'text-stone-500 hover:bg-emerald-50 hover:text-emerald-700'
           }`}
         >
           {p}
@@ -29,7 +29,7 @@ export default function Pagination({ page, totalPages, onChange }: Props) {
       <button
         onClick={() => onChange(Math.min(totalPages, page + 1))}
         disabled={page === totalPages}
-        className="rounded-full px-3 py-1.5 text-sm text-gray-500 transition hover:bg-emerald-50 hover:text-emerald-700 disabled:opacity-30 disabled:hover:bg-transparent"
+        className="rounded-full px-3 py-1.5 text-sm text-stone-500 transition hover:bg-emerald-50 hover:text-emerald-700 disabled:opacity-30 disabled:hover:bg-transparent"
       >
         ถัดไป
       </button>

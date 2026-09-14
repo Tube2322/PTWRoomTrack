@@ -8,7 +8,7 @@ export default function SearchInput({ value, onChange, placeholder = 'ค้น�
   return (
     <div className="relative">
       <svg
-        className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-300"
+        className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-300"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -20,7 +20,7 @@ export default function SearchInput({ value, onChange, placeholder = 'ค้น�
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-full border border-gray-200 bg-white py-2 pl-9 pr-3 text-sm text-gray-700 outline-none transition placeholder:text-gray-300 focus:border-emerald-300 focus:ring-2 focus:ring-emerald-100"
+        className="w-full rounded-full border border-stone-200 bg-white py-2 pl-9 pr-3 text-sm text-stone-700 outline-none transition placeholder:text-stone-300 focus:border-emerald-300 focus:ring-2 focus:ring-emerald-100"
       />
     </div>
   );

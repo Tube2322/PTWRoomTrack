@@ -11,34 +11,34 @@ export default function Settings() {
   return (
     <div className="max-w-xl space-y-8">
       <div>
-        <h2 className="text-lg font-semibold text-gray-900">ตั้งค่าระบบ</h2>
-        <p className="text-sm text-gray-400">กำหนดเกณฑ์เวลาและการแจ้งเตือนของระบบ</p>
+        <h2 className="text-lg font-semibold text-stone-900">ตั้งค่าระบบ</h2>
+        <p className="text-sm text-stone-400">กำหนดเกณฑ์เวลาและการแจ้งเตือนของระบบ</p>
       </div>
 
-      <section className="space-y-4 rounded-2xl border border-gray-100 bg-white p-5">
-        <h3 className="text-sm font-semibold text-gray-900">เป้าหมายเวลาทำห้อง</h3>
-        <label className="block text-sm text-gray-600">
+      <section className="space-y-4 rounded-2xl border border-stone-100 bg-white p-5">
+        <h3 className="text-sm font-semibold text-stone-900">เป้าหมายเวลาทำห้อง</h3>
+        <label className="block text-sm text-stone-600">
           เวลาเป้าหมาย (นาที)
           <input
             type="number"
             value={targetMin}
             onChange={(e) => setTargetMin(Number(e.target.value))}
-            className="mt-1 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm outline-none focus:border-emerald-300 focus:ring-2 focus:ring-emerald-100"
+            className="mt-1 w-full rounded-xl border border-stone-200 px-3 py-2 text-sm outline-none focus:border-emerald-300 focus:ring-2 focus:ring-emerald-100"
           />
         </label>
-        <label className="block text-sm text-gray-600">
+        <label className="block text-sm text-stone-600">
           เรียกทีม OPD เมื่อห้องรอทำมากกว่า (ห้อง)
           <input
             type="number"
             value={opdThreshold}
             onChange={(e) => setOpdThreshold(Number(e.target.value))}
-            className="mt-1 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm outline-none focus:border-emerald-300 focus:ring-2 focus:ring-emerald-100"
+            className="mt-1 w-full rounded-xl border border-stone-200 px-3 py-2 text-sm outline-none focus:border-emerald-300 focus:ring-2 focus:ring-emerald-100"
           />
         </label>
       </section>
 
-      <section className="space-y-1 rounded-2xl border border-gray-100 bg-white p-5">
-        <h3 className="mb-2 text-sm font-semibold text-gray-900">ช่องทางแจ้งเตือน</h3>
+      <section className="space-y-1 rounded-2xl border border-stone-100 bg-white p-5">
+        <h3 className="mb-2 text-sm font-semibold text-stone-900">ช่องทางแจ้งเตือน</h3>
         <Switch checked={notifyPush} onChange={setNotifyPush} label="Push Notification ในระบบ" />
         <Switch checked={notifyLine} onChange={setNotifyLine} label="LINE / Teams" />
         <Switch checked={notifyEmail} onChange={setNotifyEmail} label="อีเมล" />

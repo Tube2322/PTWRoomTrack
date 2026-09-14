@@ -13,8 +13,8 @@ export default function NurseDashboard() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900">แดชบอร์ดพยาบาล</h2>
-          <p className="text-sm text-gray-500">เห็นเฉพาะห้องของชั้นตนเอง</p>
+          <h2 className="text-lg font-semibold text-stone-900">แดชบอร์ดพยาบาล</h2>
+          <p className="text-sm text-stone-500">เห็นเฉพาะห้องของชั้นตนเอง</p>
         </div>
         <FloorTabs value={floor} onChange={setFloor} />
       </div>
@@ -26,10 +26,10 @@ export default function NurseDashboard() {
       />
 
       {selected && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-900/20 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 flex items-center justify-center bg-stone-900/20 p-4 backdrop-blur-sm">
           <div className="w-full max-w-sm rounded-2xl bg-white p-5 shadow-xl">
-            <h3 className="text-base font-semibold text-gray-900">ห้อง {selected.id}</h3>
-            <p className="mt-1 text-sm text-gray-400">เลือกการดำเนินการ</p>
+            <h3 className="text-base font-semibold text-stone-900">ห้อง {selected.id}</h3>
+            <p className="mt-1 text-sm text-stone-400">เลือกการดำเนินการ</p>
             <div className="mt-4 space-y-2">
               <button
                 className="w-full rounded-full bg-emerald-500 px-3 py-2 text-sm font-medium text-white transition hover:bg-emerald-600"
@@ -44,7 +44,7 @@ export default function NurseDashboard() {
                 แจ้งซ่อม
               </button>
               <button
-                className="w-full rounded-full border border-gray-200 px-3 py-2 text-sm text-gray-500 transition hover:bg-gray-50"
+                className="w-full rounded-full border border-stone-200 px-3 py-2 text-sm text-stone-500 transition hover:bg-stone-50"
                 onClick={() => setSelected(null)}
               >
                 ยกเลิก

@@ -9,12 +9,12 @@ interface Props {
 
 export default function RoomCard({ room, onAction, actionLabel }: Props) {
   return (
-    <div className="rounded-2xl border border-gray-100 bg-white p-3.5 shadow-sm transition hover:border-emerald-200 hover:shadow-md">
+    <div className="rounded-2xl border border-stone-100 bg-white p-3.5 shadow-sm transition hover:border-emerald-200 hover:shadow-md">
       <div className="flex items-center justify-between">
-        <span className="text-lg font-semibold text-gray-900">{room.id}</span>
+        <span className="text-lg font-semibold text-stone-900">{room.id}</span>
         <span className={`h-2.5 w-2.5 rounded-full ${statusDot[room.status]}`} />
       </div>
-      <p className="mt-1 text-xs text-gray-400">{statusLabel[room.status]}</p>
+      <p className="mt-1 text-xs text-stone-400">{statusLabel[room.status]}</p>
       {room.status === 'cleaning' && room.elapsedMin !== undefined && (
         <p className="mt-1 text-xs text-sky-600">
           ใช้เวลาแล้ว {room.elapsedMin} นาที / เป้าหมาย {room.targetMin} นาที

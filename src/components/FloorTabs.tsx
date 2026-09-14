@@ -10,13 +10,13 @@ export default function FloorTabs({
   onChange: (f: Floor) => void;
 }) {
   return (
-    <div className="inline-flex rounded-full border border-gray-100 bg-gray-50 p-1">
+    <div className="inline-flex rounded-full border border-stone-100 bg-stone-50 p-1">
       {FLOORS.map((f) => (
         <button
           key={f}
           onClick={() => onChange(f)}
           className={`rounded-full px-3.5 py-1 text-sm font-medium transition ${
-            value === f ? 'bg-emerald-500 text-white shadow-sm' : 'text-gray-500 hover:text-emerald-700'
+            value === f ? 'bg-emerald-500 text-white shadow-sm' : 'text-stone-500 hover:text-emerald-700'
           }`}
         >
           ชั้น {f}

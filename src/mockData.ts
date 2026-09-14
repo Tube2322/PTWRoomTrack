@@ -107,7 +107,7 @@ export const statusColor: Record<RoomStatus, string> = {
   ready: 'bg-emerald-100 text-emerald-800 border-emerald-300',
   occupied: 'bg-indigo-100 text-indigo-800 border-indigo-300',
   repair: 'bg-orange-100 text-orange-800 border-orange-300',
-  other: 'bg-gray-100 text-gray-700 border-gray-300',
+  other: 'bg-stone-100 text-stone-700 border-stone-300',
 };
 
 export const statusDot: Record<RoomStatus, string> = {
@@ -116,7 +116,7 @@ export const statusDot: Record<RoomStatus, string> = {
   ready: 'bg-emerald-500',
   occupied: 'bg-indigo-500',
   repair: 'bg-orange-500',
-  other: 'bg-gray-400',
+  other: 'bg-stone-400',
 };
 
 export const statusAccentBorder: Record<RoomStatus, string> = {
@@ -125,5 +125,5 @@ export const statusAccentBorder: Record<RoomStatus, string> = {
   ready: 'border-l-emerald-500',
   occupied: 'border-l-indigo-500',
   repair: 'border-l-orange-500',
-  other: 'border-l-gray-400',
+  other: 'border-l-stone-400',
 };

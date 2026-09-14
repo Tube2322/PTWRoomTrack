@@ -14,8 +14,8 @@ export default function HousekeeperDashboard() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900">แดชบอร์ดแม่บ้าน</h2>
-          <p className="text-sm text-gray-400">แสดงงานเฉพาะชั้นที่รับผิดชอบ</p>
+          <h2 className="text-lg font-semibold text-stone-900">แดชบอร์ดแม่บ้าน</h2>
+          <p className="text-sm text-stone-400">แสดงงานเฉพาะชั้นที่รับผิดชอบ</p>
         </div>
         <FloorTabs value={floor} onChange={setFloor} />
       </div>
@@ -34,14 +34,14 @@ export default function HousekeeperDashboard() {
         <RoomGrid rooms={inProgress} actionLabel="ดำเนินการแล้วเสร็จ" />
       </section>
 
-      <section className="rounded-2xl border border-gray-100 bg-emerald-50/40 p-4">
-        <h3 className="text-sm font-semibold text-gray-900">Routine Cleaning</h3>
-        <p className="text-xs text-gray-400">บันทึกทำความสะอาดห้องมีผู้ป่วย รอบเช้า / รอบบ่าย</p>
+      <section className="rounded-2xl border border-stone-100 bg-emerald-50/40 p-4">
+        <h3 className="text-sm font-semibold text-stone-900">Routine Cleaning</h3>
+        <p className="text-xs text-stone-400">บันทึกทำความสะอาดห้องมีผู้ป่วย รอบเช้า / รอบบ่าย</p>
         <div className="mt-3 flex gap-2">
           <button className="rounded-full bg-emerald-500 px-3.5 py-1.5 text-xs font-medium text-white transition hover:bg-emerald-600">
             ทำความสะอาดรอบเช้าแล้ว
           </button>
-          <button className="rounded-full border border-gray-200 bg-white px-3.5 py-1.5 text-xs font-medium text-gray-600 transition hover:bg-gray-50">
+          <button className="rounded-full border border-stone-200 bg-white px-3.5 py-1.5 text-xs font-medium text-stone-600 transition hover:bg-stone-50">
             ทำความสะอาดรอบบ่ายแล้ว
           </button>
         </div>

@@ -52,34 +52,34 @@ export default function RoomsManage() {
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="text-lg font-semibold text-gray-900">จัดการห้อง</h2>
-        <p className="text-sm text-gray-400">ห้องทั้งหมด {rooms.length} ห้อง — ค้นหา กรอง และแก้ไขข้อมูลห้อง</p>
+        <h2 className="text-lg font-semibold text-stone-900">จัดการห้อง</h2>
+        <p className="text-sm text-stone-400">ห้องทั้งหมด {rooms.length} ห้อง — ค้นหา กรอง และแก้ไขข้อมูลห้อง</p>
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
         <div className="w-full max-w-xs">
           <SearchInput value={search} onChange={(v) => { setSearch(v); setPage(1); }} placeholder="ค้นหาเลขห้อง เช่น 607" />
         </div>
-        <div className="inline-flex flex-wrap gap-1 rounded-full border border-gray-100 bg-gray-50 p-1">
+        <div className="inline-flex flex-wrap gap-1 rounded-full border border-stone-100 bg-stone-50 p-1">
           {FLOORS.map((f) => (
             <button
               key={f}
               onClick={() => { setFloor(f); setPage(1); }}
               className={`rounded-full px-3 py-1 text-xs font-medium transition ${
-                floor === f ? 'bg-emerald-500 text-white shadow-sm' : 'text-gray-500 hover:text-emerald-700'
+                floor === f ? 'bg-emerald-500 text-white shadow-sm' : 'text-stone-500 hover:text-emerald-700'
               }`}
             >
               {f === 'all' ? 'ทุกชั้น' : `ชั้น ${f}`}
             </button>
           ))}
         </div>
-        <div className="inline-flex flex-wrap gap-1 rounded-full border border-gray-100 bg-gray-50 p-1">
+        <div className="inline-flex flex-wrap gap-1 rounded-full border border-stone-100 bg-stone-50 p-1">
           {STATUSES.map((s) => (
             <button
               key={s}
               onClick={() => setStatus(s)}
               className={`rounded-full px-3 py-1 text-xs font-medium transition ${
-                status === s ? 'bg-emerald-500 text-white shadow-sm' : 'text-gray-500 hover:text-emerald-700'
+                status === s ? 'bg-emerald-500 text-white shadow-sm' : 'text-stone-500 hover:text-emerald-700'
               }`}
             >
               {s === 'all' ? 'ทุกสถานะ' : statusLabel[s]}
@@ -91,9 +91,9 @@ export default function RoomsManage() {
       {filtered.length === 0 ? (
         <EmptyState message="ไม่พบห้องที่ตรงกับเงื่อนไข" />
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-gray-100 bg-white">
-          <table className="min-w-[640px] w-full divide-y divide-gray-100 text-sm">
-            <thead className="bg-gray-50/60 text-left text-xs font-medium text-gray-400">
+        <div className="overflow-x-auto rounded-2xl border border-stone-100 bg-white">
+          <table className="min-w-[640px] w-full divide-y divide-stone-100 text-sm">
+            <thead className="bg-stone-50/60 text-left text-xs font-medium text-stone-400">
               <tr>
                 <th className="px-4 py-2.5">ห้อง</th>
                 <th className="px-4 py-2.5">ชั้น</th>
@@ -103,20 +103,20 @@ export default function RoomsManage() {
                 <th className="px-4 py-2.5" />
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50">
+            <tbody className="divide-y divide-stone-50">
               {pageRooms.map((r) => (
                 <tr key={r.id} className="hover:bg-emerald-50/30">
-                  <td className="px-4 py-2.5 font-medium text-gray-900">{r.id}</td>
-                  <td className="px-4 py-2.5 text-gray-500">ชั้น {r.floor}</td>
+                  <td className="px-4 py-2.5 font-medium text-stone-900">{r.id}</td>
+                  <td className="px-4 py-2.5 text-stone-500">ชั้น {r.floor}</td>
                   <td className="px-4 py-2.5">
                     <StatusBadge status={r.status} />
                   </td>
-                  <td className="px-4 py-2.5 text-gray-500">{r.assignedTo ?? '—'}</td>
-                  <td className="px-4 py-2.5 text-gray-500">
+                  <td className="px-4 py-2.5 text-stone-500">{r.assignedTo ?? '—'}</td>
+                  <td className="px-4 py-2.5 text-stone-500">
                     {r.startedAt ?? r.requestedAt ?? '—'}
                   </td>
                   <td className="px-4 py-2.5">
-                    <button className="rounded-full border border-gray-200 px-3 py-1 text-xs font-medium text-gray-600 transition hover:border-emerald-300 hover:text-emerald-700">
+                    <button className="rounded-full border border-stone-200 px-3 py-1 text-xs font-medium text-stone-600 transition hover:border-emerald-300 hover:text-emerald-700">
                       รายละเอียด
                     </button>
                   </td>
