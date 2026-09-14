@@ -63,7 +63,7 @@ export default function AdminLayout() {
             </span>
             <div>
               <h1 className="text-sm font-semibold text-white">PTW Room Ready</h1>
-              <p className="text-xs text-slate-400">ศูนย์ควบคุมแอดมิน</p>
+              <p className="text-xs text-slate-400">Center Hub</p>
             </div>
           </div>
           <button
