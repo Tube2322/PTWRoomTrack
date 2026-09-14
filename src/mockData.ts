@@ -96,3 +96,12 @@ export const statusDot: Record<RoomStatus, string> = {
   repair: 'bg-orange-500',
   other: 'bg-gray-400',
 };
+
+export const statusAccentBorder: Record<RoomStatus, string> = {
+  pending_clean: 'border-l-amber-400',
+  cleaning: 'border-l-sky-500',
+  ready: 'border-l-emerald-500',
+  occupied: 'border-l-indigo-500',
+  repair: 'border-l-orange-500',
+  other: 'border-l-gray-400',
+};

@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { alerts, rooms, statusLabel } from '../mockData';
+import { alerts, rooms, statusAccentBorder, statusLabel } from '../mockData';
 import type { Floor, RoomStatus } from '../types';
 import RoomGrid from '../components/RoomGrid';
 import AlertBanner from '../components/AlertBanner';
 
-const FLOORS: (Floor | 'all')[] = ['all', 6, 7, 8];
+const FLOORS: Floor[] = [6, 7, 8];
 const STATUSES: (RoomStatus | 'all')[] = [
   'all',
   'pending_clean',
@@ -23,8 +23,9 @@ const ROLE_VIEWS = [
   { to: '/executive', label: 'ผู้บริหาร', desc: 'ภาพรวม KPI Read-only' },
 ];
 
+const QUICK_ACTIONS = ['จัดการผู้ใช้งาน', 'ส่งออกรายงาน', 'Audit Log'];
+
 export default function AdminDashboard() {
-  const [floor, setFloor] = useState<Floor | 'all'>('all');
   const [status, setStatus] = useState<RoomStatus | 'all'>('all');
 
   const counts = useMemo(() => {
@@ -40,15 +41,32 @@ export default function AdminDashboard() {
     return c;
   }, []);
 
-  const filtered = rooms.filter(
-    (r) => (floor === 'all' || r.floor === floor) && (status === 'all' || r.status === status),
+  const byFloor = useMemo(
+    () =>
+      FLOORS.map((floor) => ({
+        floor,
+        rooms: rooms.filter((r) => r.floor === floor && (status === 'all' || r.status === status)),
+      })),
+    [status],
   );
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-lg font-semibold text-gray-900">ศูนย์ควบคุม แอดมินหลัก</h2>
-        <p className="text-sm text-gray-400">ภาพรวมทั้ง 90 ห้อง / จัดการผู้ใช้งานและข้อมูลห้อง</p>
+    <div className="space-y-8">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h2 className="text-lg font-semibold text-gray-900">ศูนย์ควบคุม แอดมินหลัก</h2>
+          <p className="text-sm text-gray-400">ภาพรวมทั้ง 90 ห้อง / จัดการผู้ใช้งานและข้อมูลห้อง</p>
+        </div>
+        <div className="flex gap-2">
+          {QUICK_ACTIONS.map((label) => (
+            <button
+              key={label}
+              className="rounded-full border border-gray-200 px-3.5 py-1.5 text-xs font-medium text-gray-600 transition hover:border-emerald-300 hover:text-emerald-700"
+            >
+              {label}
+            </button>
+          ))}
+        </div>
       </div>
 
       <section>
@@ -67,56 +85,55 @@ export default function AdminDashboard() {
         </div>
       </section>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-        {(Object.keys(counts) as RoomStatus[])
-          .filter((s) => s !== 'other')
-          .map((s) => (
-            <div key={s} className="rounded-2xl border border-gray-100 bg-white p-4">
-              <p className="text-2xl font-bold text-gray-900">{counts[s]}</p>
-              <p className="text-xs text-gray-400">{statusLabel[s]}</p>
-            </div>
-          ))}
-      </div>
+      <section>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          {(Object.keys(counts) as RoomStatus[])
+            .filter((s) => s !== 'other')
+            .map((s) => (
+              <button
+                key={s}
+                onClick={() => setStatus(status === s ? 'all' : s)}
+                className={`rounded-2xl border-l-4 bg-white p-4 text-left shadow-sm transition hover:shadow-md ${statusAccentBorder[s]} ${
+                  status === s ? 'ring-2 ring-emerald-300' : 'border-y border-r border-gray-100'
+                }`}
+              >
+                <p className="text-2xl font-bold text-gray-900">{counts[s]}</p>
+                <p className="text-xs text-gray-400">{statusLabel[s]}</p>
+              </button>
+            ))}
+        </div>
+      </section>
 
       <AlertBanner items={alerts} />
 
-      <div className="flex flex-wrap items-center gap-3">
-        <select
-          value={floor}
-          onChange={(e) => setFloor(e.target.value === 'all' ? 'all' : (Number(e.target.value) as Floor))}
-          className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-600"
-        >
-          {FLOORS.map((f) => (
-            <option key={f} value={f}>
-              {f === 'all' ? 'ทุกชั้น' : `ชั้น ${f}`}
-            </option>
-          ))}
-        </select>
-        <select
-          value={status}
-          onChange={(e) => setStatus(e.target.value as RoomStatus | 'all')}
-          className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-600"
-        >
-          {STATUSES.map((s) => (
-            <option key={s} value={s}>
-              {s === 'all' ? 'ทุกสถานะ' : statusLabel[s]}
-            </option>
-          ))}
-        </select>
-        <div className="ml-auto flex gap-2">
-          <button className="rounded-full border border-gray-200 px-3.5 py-1.5 text-xs font-medium text-gray-600 transition hover:border-emerald-300 hover:text-emerald-700">
-            จัดการผู้ใช้งาน
-          </button>
-          <button className="rounded-full border border-gray-200 px-3.5 py-1.5 text-xs font-medium text-gray-600 transition hover:border-emerald-300 hover:text-emerald-700">
-            ส่งออกรายงาน
-          </button>
-          <button className="rounded-full border border-gray-200 px-3.5 py-1.5 text-xs font-medium text-gray-600 transition hover:border-emerald-300 hover:text-emerald-700">
-            Audit Log
-          </button>
+      <section className="space-y-6">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h3 className="text-sm font-semibold text-gray-500">ห้องทั้งหมด 90 ห้อง แยกตามชั้น</h3>
+          <div className="inline-flex flex-wrap gap-1 rounded-full border border-gray-100 bg-gray-50 p-1">
+            {STATUSES.map((s) => (
+              <button
+                key={s}
+                onClick={() => setStatus(s)}
+                className={`rounded-full px-3 py-1 text-xs font-medium transition ${
+                  status === s ? 'bg-emerald-500 text-white shadow-sm' : 'text-gray-500 hover:text-emerald-700'
+                }`}
+              >
+                {s === 'all' ? 'ทุกสถานะ' : statusLabel[s]}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <RoomGrid rooms={filtered} />
+        {byFloor.map(({ floor, rooms: floorRooms }) => (
+          <div key={floor}>
+            <div className="mb-2 flex items-baseline gap-2">
+              <h4 className="text-sm font-semibold text-gray-900">ชั้น {floor}</h4>
+              <span className="text-xs text-gray-400">{floorRooms.length} ห้อง</span>
+            </div>
+            <RoomGrid rooms={floorRooms} />
+          </div>
+        ))}
+      </section>
     </div>
   );
 }
