@@ -1,32 +1,74 @@
-# React + TypeScript + Vite
+# PTW Room Ready
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+ระบบบริหารจัดการสถานะห้องพักและงานทำความสะอาดแบบ Real-time สำหรับ 3 ชั้น (ชั้น 6, 7, 8) รวม 90 ห้อง เชื่อมโยงการทำงานระหว่างพยาบาล แม่บ้าน ทีมช่วยเหลือ OPD งานซ่อมบำรุง แอดมินหลัก และผู้บริหาร เป้าหมายคือควบคุมเวลาทำห้องให้พร้อมรับผู้ป่วยภายใน 20 นาที
 
-Currently, two official plugins are available:
+Live: https://ptw-room-track.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- React + TypeScript + Vite
+- Tailwind CSS
+- React Router
+- Firebase (Firestore + Auth) — backend/data
+- Vercel — hosting, auto-deploy จาก `main`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## บทบาทผู้ใช้งาน
 
-## Expanding the Oxlint configuration
+| บทบาท | สิทธิ์ |
+| --- | --- |
+| พยาบาล | แจ้งทำความสะอาด / แจ้งซ่อม เฉพาะชั้นที่รับผิดชอบ |
+| แม่บ้าน | รับงาน / ทำความสะอาด / Routine Cleaning เฉพาะชั้นของตน |
+| ทีม OPD | รับงานช่วยเหลือเฉพาะชั้นที่ได้รับมอบหมาย (เมื่อห้องรอทำ > 3 ห้อง) |
+| งานซ่อมบำรุง | รับงานซ่อม / ปิดงาน |
+| แอดมินหลัก | จัดการระบบทั้งหมด 90 ห้อง, ผู้ใช้งาน, รายงาน, Audit Log |
+| ผู้บริหาร | ดูภาพรวมและ KPI แบบ Read-only |
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## สถานะห้อง
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+🟡 รอทำความสะอาด · 🔵 กำลังดำเนินการ / มีคนไข้ · 🟢 ห้องพร้อมรับ · 🔧 รอซ่อม
+
+## Getting started
+
+```bash
+npm install
+cp .env.example .env   # ใส่ค่า Firebase web config ของตัวเอง
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Scripts
+
+```bash
+npm run dev      # dev server
+npm run build    # typecheck + build production
+npm run lint      # oxlint
+```
+
+## Firebase
+
+โปรเจกต์ใช้ Cloud Firestore เก็บข้อมูลห้อง/งาน/ประวัติ และ Firebase Auth สำหรับล็อกอินตามบทบาท
+
+```bash
+npx firebase-tools login
+npx firebase-tools deploy --only firestore:rules
+```
+
+ไฟล์ตั้งค่า: [`firebase.json`](firebase.json), [`firestore.rules`](firestore.rules), [`.firebaserc`](.firebaserc)
+
+## โครงสร้างโปรเจกต์
+
+```
+src/
+  components/   UI ที่ใช้ร่วมกัน (RoomCard, RoomGrid, StatusBadge, Layout, ...)
+  pages/        แดชบอร์ดแยกตามบทบาท
+  lib/firebase.ts  Firebase SDK init
+  mockData.ts   ข้อมูลจำลอง 90 ห้อง (รอต่อ Firestore จริง)
+  types.ts      ชนิดข้อมูลหลัก (Room, RoomStatus, Role, ...)
+```
+
+## สถานะปัจจุบัน
+
+- [x] UI/UX โครงพื้นฐานครบ 6 บทบาท (mock data)
+- [x] Hosting (Vercel) + Backend project (Firebase) พร้อมใช้งาน
+- [ ] เชื่อม Firestore จริงแทน mock data
+- [ ] Firebase Authentication + role-based access
+- [ ] Push notification แจ้งเตือนตามชั้น/บทบาท
